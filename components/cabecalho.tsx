@@ -44,7 +44,7 @@ export function Cabecalho() {
     <header className="cabecalho">
       <div className="container">
         <Link href="/" className="logo" aria-label={`${site.nome} — início`}>
-          <img className="logo-marca" src="/logo.png" alt="" width={46} height={46} />
+          <img className="logo-marca" src="/logo.png" alt="" width={62} height={62} />
           <span><strong>{site.nome}</strong><small>{site.slogan}</small></span>
         </Link>
 
