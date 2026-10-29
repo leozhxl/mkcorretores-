@@ -4,13 +4,13 @@ import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, Award, MapPinned, Users } from 'lucide-react'
 import { BuscaImoveis } from '@/components/busca-imoveis'
-import { CardImovel } from '@/components/card-imovel'
-import { TIPOS, cidadesComTotal, destaques, imoveis, type Finalidade } from '@/lib/imoveis'
+import { CarrosselImoveis } from '@/components/carrossel-imoveis'
+import { TIPOS, cidadesComTotal, imoveis, type Finalidade } from '@/lib/imoveis'
 import { site } from '@/lib/site'
 
 export default function Home() {
   const [aba, setAba] = useState<Finalidade>('Comprar')
-  const oportunidades = useMemo(() => destaques.filter((imovel) => imovel.finalidade === aba), [aba])
+  const oportunidades = useMemo(() => imoveis.filter((imovel) => imovel.finalidade === aba), [aba])
   const cidades = cidadesComTotal()
 
   return <>
@@ -26,7 +26,7 @@ export default function Home() {
       <div className="container">
         <div className="secao-titulo">
           <h2>Oportunidades</h2>
-          <p>Imóveis em destaque no nosso portfólio.</p>
+          <p>Todos os imóveis disponíveis agora no nosso portfólio.</p>
           <span className="linha" />
         </div>
 
@@ -37,7 +37,7 @@ export default function Home() {
         </div>
 
         {oportunidades.length > 0 ? <>
-          <div className="grade-imoveis">{oportunidades.map((imovel) => <CardImovel key={imovel.id} imovel={imovel} />)}</div>
+          <CarrosselImoveis imoveis={oportunidades} />
           <p style={{ marginTop: 24 }}>
             <Link className="botao botao-contorno" href={`/imoveis?finalidade=${aba}`}>Ver todos os imóveis para {aba.toLowerCase()} <ArrowRight size={16} /></Link>
           </p>
@@ -51,15 +51,9 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="faixa-anuncie">
-      <div className="container">
-        <div>
-          <h2>Anuncie seu imóvel com a gente</h2>
-          <p>Na {site.nome} o seu imóvel é fotografado, documentado e apresentado a quem realmente procura. Avaliação sem compromisso.</p>
-        </div>
-        <Link className="botao" href="/anuncie">Quero anunciar <ArrowRight size={16} /></Link>
-      </div>
-    </section>
+    <Link className="faixa-anuncie" href="/anuncie" aria-label="Anuncie seu imóvel com a gente — quero anunciar">
+      <img src="/faixa-anuncie.png" alt={`Anuncie seu imóvel com a ${site.nome}`} width={2172} height={724} />
+    </Link>
 
     <section className="secao">
       <div className="container">

@@ -42,32 +42,26 @@ h1, h2, h3 { margin:0; color:var(--titulo); line-height:1.2; }
 .botao:disabled { opacity:.6; cursor:not-allowed; }
 
 /* ---------- Cabeçalho ---------- */
-.topbar { background:var(--grafite); color:rgba(255,255,255,.85); font-size:12.5px; }
-.topbar .container { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; min-height:38px; }
-.topbar a { display:inline-flex; align-items:center; gap:6px; }
-.topbar a:hover { color:#fff; }
-.topbar-contatos { display:flex; flex-wrap:wrap; gap:20px; }
-
-.cabecalho { position:sticky; z-index:40; top:0; background:#fff; box-shadow:var(--sombra); }
-.cabecalho .container { display:flex; align-items:center; gap:28px; min-height:84px; }
+.cabecalho { position:sticky; z-index:40; top:0; background:var(--grafite); box-shadow:0 1px 0 rgba(255,255,255,.07), 0 6px 24px rgba(12,20,18,.25); }
+.cabecalho .container { display:flex; align-items:center; gap:28px; min-height:100px; }
 .logo { display:flex; align-items:center; gap:11px; }
-img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain; background:var(--grafite); }
-.logo strong { display:block; color:var(--titulo); font-size:17px; font-weight:700; letter-spacing:.01em; }
-.logo small { display:block; color:var(--texto-claro); font-size:11px; }
+img.logo-marca { width:auto; height:78px; object-fit:contain; }
+.logo strong { display:block; color:#fff; font-size:17px; font-weight:700; letter-spacing:.01em; }
+.logo small { display:block; color:rgba(255,255,255,.65); font-size:11px; }
 
 .menu { display:flex; align-items:center; gap:4px; margin-left:auto; }
-.menu > a, .menu-item > button { display:inline-flex; align-items:center; gap:5px; padding:10px 13px; border:0; border-radius:var(--raio); background:none; color:var(--titulo); font-size:13.5px; font-weight:600; letter-spacing:.02em; text-transform:uppercase; cursor:pointer; }
-.menu > a:hover, .menu-item > button:hover, .menu-item:hover > button { color:var(--marca); background:#faf4f7; }
+.menu > a, .menu-item > button { display:inline-flex; align-items:center; gap:5px; padding:10px 13px; border:0; border-radius:var(--raio); background:none; color:rgba(255,255,255,.88); font-size:13.5px; font-weight:600; letter-spacing:.02em; text-transform:uppercase; cursor:pointer; transition:color .2s ease, background .2s ease; }
+.menu > a:hover, .menu-item > button:hover, .menu-item:hover > button { color:var(--dourado-claro); background:rgba(255,255,255,.08); }
 .menu-item { position:relative; }
 .submenu { position:absolute; z-index:5; top:100%; left:0; display:none; min-width:212px; padding:8px; border:1px solid var(--linha); border-radius:var(--raio); background:#fff; box-shadow:var(--sombra-forte); }
 .menu-item:hover .submenu, .menu-item:focus-within .submenu { display:block; }
 .submenu a { display:block; padding:9px 12px; border-radius:4px; font-size:13.5px; }
-.submenu a:hover { background:#faf4f7; color:var(--marca); }
+.submenu a:hover { background:var(--fundo); color:var(--marca); }
 .submenu .vazio { padding:9px 12px; color:var(--texto-claro); font-size:12.5px; }
 
 .favoritos-link { position:relative; }
-.favoritos-contador { display:inline-grid; place-items:center; min-width:19px; height:19px; padding:0 5px; border-radius:10px; background:var(--marca); color:#fff; font-size:11px; font-weight:700; }
-.menu-botao { display:none; padding:9px; border:1px solid var(--linha); border-radius:var(--raio); background:#fff; cursor:pointer; }
+.favoritos-contador { display:inline-grid; place-items:center; min-width:19px; height:19px; padding:0 5px; border-radius:10px; background:var(--dourado); color:var(--grafite-escuro); font-size:11px; font-weight:700; }
+.menu-botao { display:none; margin-left:auto; padding:9px; border:1px solid rgba(255,255,255,.25); border-radius:var(--raio); background:none; color:#fff; cursor:pointer; }
 
 .menu-mobile { position:fixed; z-index:60; inset:0; display:flex; flex-direction:column; gap:4px; padding:22px; overflow-y:auto; background:#fff; }
 .menu-mobile .fechar { align-self:flex-end; padding:8px; border:0; background:none; cursor:pointer; }
@@ -98,6 +92,20 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
 .abas button.ativo { border-color:var(--marca); background:var(--marca); color:#fff; }
 
 .grade-imoveis { display:grid; grid-template-columns:repeat(auto-fill, minmax(290px, 1fr)); gap:22px; }
+
+/* ---------- Carrossel de imóveis ---------- */
+.carrossel { position:relative; }
+.carrossel-trilho { display:flex; align-items:stretch; gap:22px; overflow-x:auto; padding-bottom:4px; scroll-snap-type:x mandatory; scrollbar-width:none; }
+.carrossel-trilho::-webkit-scrollbar { display:none; }
+.carrossel-item { display:flex; flex:0 0 calc((100% - 44px) / 3); scroll-snap-align:start; }
+.carrossel-item > * { flex:1; }
+.carrossel-seta { position:absolute; top:122px; z-index:3; display:grid; place-items:center; width:44px; height:44px; border:1px solid var(--linha); border-radius:50%; background:#fff; color:var(--titulo); cursor:pointer; box-shadow:var(--sombra-forte); transition:background .2s ease, color .2s ease; }
+.carrossel-seta:hover { background:var(--marca); border-color:var(--marca); color:#fff; }
+.carrossel-anterior { left:-16px; }
+.carrossel-proxima { right:-16px; }
+.carrossel-pontos { display:flex; justify-content:center; gap:7px; margin-top:20px; }
+.carrossel-pontos button { width:8px; height:8px; padding:0; border:0; border-radius:50%; background:var(--linha); cursor:pointer; transition:width .25s ease, background .25s ease; }
+.carrossel-pontos button.ativo { width:24px; border-radius:4px; background:var(--marca); }
 .card { display:flex; flex-direction:column; overflow:hidden; border:1px solid var(--linha); border-radius:var(--raio); background:#fff; transition:box-shadow .25s, transform .25s; }
 .card:hover { transform:translateY(-3px); box-shadow:var(--sombra-forte); }
 .card-foto { position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--grafite); }
@@ -130,11 +138,68 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
 .vazio-acoes { max-width:none; margin-bottom:0; }
 
 /* ---------- Blocos da home ---------- */
-.faixa-anuncie { padding:54px 0; background:var(--marca); color:#fff; }
-.faixa-anuncie .container { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:26px; }
-.faixa-anuncie h2 { color:#fff; font-size:clamp(23px,2.6vw,31px); }
-.faixa-anuncie p { max-width:560px; margin:8px 0 0; color:rgba(255,255,255,.9); }
-.faixa-anuncie .botao { background:#fff; color:var(--marca); }
+/* A arte já traz texto e botão; o bloco inteiro é o link para /anuncie. */
+/* A foto cobre o topo e o formulário como um bloco só. */
+.anuncie-capa { position:relative; background:url('/anuncie-fundo.png') center/cover no-repeat; }
+.anuncie-capa:before { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,18,.62), rgba(12,20,18,.82)); }
+.anuncie-capa > section { position:relative; background:none; }
+.anuncie-capa .pagina-topo { padding-top:46px; }
+.anuncie-capa .secao { padding:50px 0 66px; }
+.anuncie-capa .colunas-contato { gap:46px; align-items:center; }
+.anuncie-capa .secao-titulo h2 { color:#fff; font-size:clamp(24px,2.8vw,32px); }
+
+/* Etapas em cartões translúcidos, para separar do fundo fotográfico. */
+.anuncie-capa .lista-contato { gap:12px; margin-top:26px; }
+.anuncie-capa .lista-contato div { align-items:center; gap:16px; padding:16px 18px; border:1px solid rgba(255,255,255,.14); border-radius:14px; background:rgba(255,255,255,.07); backdrop-filter:blur(6px); transition:background .25s ease, border-color .25s ease; }
+.anuncie-capa .lista-contato div:hover { border-color:rgba(201,162,39,.5); background:rgba(255,255,255,.12); }
+.anuncie-capa .lista-contato svg { flex-shrink:0; box-sizing:content-box; width:20px; height:20px; margin:0; padding:11px; border-radius:50%; background:rgba(201,162,39,.16); color:var(--dourado-claro); }
+.anuncie-capa .lista-contato strong { margin-bottom:3px; font-size:15px; color:#fff; }
+.anuncie-capa .lista-contato span { color:rgba(255,255,255,.8); font-size:14px; line-height:1.55; }
+
+.anuncie-capa .bloco-branco { padding:34px; border-radius:16px; box-shadow:0 20px 50px rgba(12,20,18,.4); }
+/* O cartão do formulário continua claro, para destacar sobre a foto. */
+.anuncie-capa .bloco-branco .secao-titulo h2 { color:var(--titulo); }
+
+/* ---------- Vantagens e passo a passo ---------- */
+.secao-vantagens { background:#fff; }
+.vantagens { display:grid; grid-template-columns:repeat(auto-fit, minmax(270px, 1fr)); gap:26px; }
+.vantagem { display:flex; flex-direction:column; align-items:center; padding:40px 30px 36px; border-radius:16px; text-align:center; box-shadow:var(--sombra-forte); transition:transform .25s ease, box-shadow .25s ease; }
+.vantagem:hover { transform:translateY(-6px); box-shadow:0 18px 44px rgba(12,20,18,.22); }
+.vantagem svg { box-sizing:content-box; width:28px; height:28px; padding:17px; border-radius:50%; }
+.vantagem h3 { margin:18px 0 10px; font-size:18.5px; line-height:1.3; letter-spacing:-.01em; }
+.vantagem p { max-width:290px; margin:0; font-size:14.5px; line-height:1.65; }
+
+
+.vantagem-marca { background:var(--marca); }
+.vantagem-marca svg { background:rgba(227,196,101,.14); color:var(--dourado-claro); }
+.vantagem-marca h3 { color:var(--dourado-claro); }
+.vantagem-marca p { color:rgba(255,255,255,.92); }
+
+.vantagem-areia { background:#f1ebdd; }
+.vantagem-areia svg { background:rgba(21,56,46,.1); color:var(--marca); }
+.vantagem-areia h3 { color:var(--marca); }
+.vantagem-areia p { color:var(--texto); }
+
+.vantagem-escura { background:var(--grafite-escuro); }
+.vantagem-escura svg { background:rgba(201,162,39,.14); color:var(--dourado); }
+.vantagem-escura h3 { color:var(--dourado); }
+.vantagem-escura p { color:rgba(255,255,255,.88); }
+
+.faixa-passos { padding:66px 0 72px; background:var(--marca); }
+.faixa-passos h2 { margin-bottom:12px; color:#fff; font-size:clamp(23px,2.6vw,31px); text-align:center; }
+.faixa-passos > .container > .linha { display:block; width:52px; height:3px; margin:0 auto 46px; border-radius:2px; background:linear-gradient(90deg, var(--dourado), var(--dourado-claro)); }
+.passos { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:22px; margin:0; padding:0; list-style:none; }
+.passos li { position:relative; display:flex; flex-direction:column; gap:12px; padding:26px 24px 28px; border:1px solid rgba(255,255,255,.12); border-radius:16px; background:rgba(255,255,255,.055); transition:transform .25s ease, background .25s ease, border-color .25s ease; }
+.passos li:hover { transform:translateY(-5px); border-color:rgba(227,196,101,.45); background:rgba(255,255,255,.1); }
+/* Fio ligando um card ao seguinte. */
+.passos li:not(:last-child):after { content:''; position:absolute; top:52px; right:-22px; width:22px; height:1px; background:rgba(227,196,101,.35); }
+.passo-numero { display:grid; place-items:center; width:52px; height:52px; border:1px solid rgba(227,196,101,.45); border-radius:14px; background:rgba(227,196,101,.1); color:var(--dourado-claro); font-size:19px; font-weight:700; letter-spacing:.02em; }
+.passos h3 { margin:4px 0 -4px; color:#fff; font-size:16.5px; }
+.passos p { margin:0; color:rgba(255,255,255,.76); font-size:14.5px; line-height:1.6; }
+
+.faixa-anuncie { display:block; overflow:hidden; background:var(--grafite-escuro); }
+.faixa-anuncie img { width:100%; height:clamp(280px,30vw,380px); object-fit:cover; object-position:center; transition:transform .6s ease; }
+.faixa-anuncie:hover img { transform:scale(1.02); }
 
 .diferenciais { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:20px; }
 .diferencial { position:relative; padding:34px 28px 30px; border:1px solid var(--linha); border-radius:var(--raio); background:#fff; overflow:hidden; transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
@@ -160,6 +225,13 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
 
 /* ---------- Listagem ---------- */
 .pagina-topo { padding:34px 0; background:var(--grafite); color:#fff; }
+
+/* Capa com foto para as páginas que pedem mais presença visual. */
+.capa-pagina { position:relative; padding:78px 0 64px; background:url('/Mansão contemporânea à beira-mar ao pôr do sol.png') center/cover; }
+.capa-pagina:before { content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(12,20,18,.52) 0%, rgba(12,20,18,.72) 60%, rgba(12,20,18,.88) 100%); }
+.capa-pagina .container { position:relative; }
+.capa-pagina h1 { font-size:clamp(27px,3.6vw,40px); }
+.capa-pagina > .container > p { max-width:620px; font-size:16px; }
 .pagina-topo h1 { color:#fff; font-size:clamp(23px,3vw,33px); }
 .pagina-topo p { margin:7px 0 0; color:rgba(255,255,255,.82); font-size:14.5px; }
 .botao-voltar { display:inline-flex; align-items:center; gap:7px; margin-bottom:14px; padding:7px 14px 7px 11px; border:1px solid rgba(255,255,255,.3); border-radius:999px; background:rgba(255,255,255,.08); color:#fff; font-size:13px; font-weight:600; cursor:pointer; transition:background .2s ease, border-color .2s ease; }
@@ -218,7 +290,7 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
 .ficha-lateral .custos { display:flex; flex-direction:column; gap:6px; padding:13px 0; border-block:1px solid var(--linha); color:var(--texto-claro); font-size:13px; }
 .ficha-lateral .custos div { display:flex; justify-content:space-between; }
 .ficha-lateral .corretor { display:flex; align-items:center; gap:11px; }
-.ficha-lateral img.corretor-marca { width:44px; height:44px; border-radius:50%; object-fit:contain; background:var(--grafite); }
+.ficha-lateral img.corretor-marca { width:auto; height:38px; object-fit:contain; }
 .ficha-lateral .corretor strong { display:block; color:var(--titulo); font-size:14.5px; }
 .ficha-lateral .corretor span { color:var(--texto-claro); font-size:12.5px; }
 .ficha-lateral .codigo { color:var(--texto-claro); font-size:12px; text-align:center; }
@@ -258,7 +330,7 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
 .rodape a:hover { color:#fff; }
 .rodape-col { display:flex; flex-direction:column; gap:9px; }
 .rodape-marca p { margin:14px 0 0; max-width:300px; }
-.rodape-marca img.logo-marca { width:68px; height:68px; background:rgba(255,255,255,.06); }
+.rodape-marca img.logo-marca { height:96px; padding:0; background:none; }
 .rodape-marca .logo strong, .rodape-marca .logo small { color:#fff; }
 .rodape-redes { display:flex; gap:10px; margin-top:18px; }
 .rodape-redes a { display:grid; place-items:center; width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; }
@@ -277,6 +349,10 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
   .rodape-grade { grid-template-columns:1fr 1fr; }
 }
 @media (max-width:900px) {
+  .passos li:not(:last-child):after { display:none; }
+  .faixa-anuncie img { height:230px; object-fit:cover; object-position:center; }
+  .carrossel-item { flex-basis:calc((100% - 22px) / 2); }
+  .carrossel-seta { display:none; }
   .menu { display:none; }
   .menu-botao { display:block; margin-left:auto; }
   .busca { grid-template-columns:1fr; }
@@ -284,7 +360,6 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
   .busca-finalidade button { flex:1; }
   .colunas-contato { grid-template-columns:1fr; }
   .sobre-apresentacao { grid-template-columns:1fr; }
-  .topbar-contatos { gap:14px; font-size:11.5px; }
   .ficha-galeria { grid-template-columns:1fr; aspect-ratio:auto; }
   .ficha-galeria figure { aspect-ratio:4/3; }
   .ficha-galeria figure:first-child { grid-row:auto; }
@@ -294,9 +369,12 @@ img.logo-marca { width:62px; height:62px; border-radius:50%; object-fit:contain;
   .lightbox-proxima { right:6px; }
 }
 @media (max-width:640px) {
+  .capa-pagina { padding:48px 0 40px; }
   .hero { min-height:clamp(440px,100vw,560px); padding:110px 0 46px; }
   .secao { padding:44px 0; }
   .grade-imoveis { grid-template-columns:1fr; }
+  .carrossel-item { flex-basis:100%; }
+  .carrossel-seta { display:none; }
   .rodape-grade { grid-template-columns:1fr; gap:28px; }
   .formulario .duas { grid-template-columns:1fr; }
   .whatsapp-flutuante a span { display:none; }

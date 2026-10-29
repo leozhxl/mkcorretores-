@@ -119,7 +119,7 @@ export default async function ImovelPage({ params }: { params: Promise<{ id: str
           )}
 
           <div className="corretor">
-            <img className="corretor-marca" src="/logo.png" alt="" width={44} height={44} />
+            <img className="corretor-marca" src="/logo.png" alt="" width={1774} height={887} />
             <span><strong>{site.nome}</strong><span>Atendimento direto</span></span>
           </div>
 

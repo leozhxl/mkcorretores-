@@ -2,10 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ChevronDown, Heart, Mail, MapPin, Menu, Phone, X } from 'lucide-react'
+import { ChevronDown, Heart, Menu, X } from 'lucide-react'
 import { TIPOS, tiposDisponiveis } from '@/lib/imoveis'
 import { useFavoritos } from '@/lib/favoritos'
-import { linkWhatsApp, site } from '@/lib/site'
+import { site } from '@/lib/site'
 
 function Submenu({ rotulo, finalidade }: { rotulo: string; finalidade: 'Comprar' | 'Alugar' }) {
   const disponiveis = tiposDisponiveis(finalidade)
@@ -28,24 +28,10 @@ export function Cabecalho() {
   const { favoritos } = useFavoritos()
 
   return <>
-    <div className="topbar">
-      <div className="container">
-        <div className="topbar-contatos">
-          <a href={`mailto:${site.email}`}><Mail size={13} /> {site.email}</a>
-          {site.telefone && <a href={`tel:${site.telefone.replace(/\D/g, '')}`}><Phone size={13} /> {site.telefone}</a>}
-          {site.endereco && <span><MapPin size={13} /> {site.endereco}</span>}
-        </div>
-        <a href={linkWhatsApp('Olá, vim pelo site e gostaria de atendimento.')} target="_blank" rel="noreferrer">
-          WhatsApp {site.whatsappVendas.exibicao}
-        </a>
-      </div>
-    </div>
-
     <header className="cabecalho">
       <div className="container">
         <Link href="/" className="logo" aria-label={`${site.nome} — início`}>
-          <img className="logo-marca" src="/logo.png" alt="" width={62} height={62} />
-          <span><strong>{site.nome}</strong><small>{site.slogan}</small></span>
+          <img className="logo-marca" src="/logo.png" alt={site.nome} width={1774} height={887} />
         </Link>
 
         <nav className="menu" aria-label="Navegação principal">

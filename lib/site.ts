@@ -17,7 +17,7 @@ export const site = {
   instagramHandle: '@mkcorretores',
   facebook: '',
   /** Número de registro no CRECI. Enquanto vazio, não é exibido no site. */
-  creci: '',
+  creci: '025.426',
   /** Anos de atuação. Enquanto null, a métrica não é exibida. */
   anosDeMercado: null as number | null,
   /** Quantidade de corretores na equipe. Enquanto null, não é exibida. */

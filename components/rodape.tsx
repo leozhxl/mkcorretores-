@@ -11,7 +11,7 @@ export function Rodape() {
       <div className="container">
         <div className="rodape-grade">
           <div className="rodape-marca">
-            <div className="logo"><img className="logo-marca" src="/logo.png" alt="" width={68} height={68} /><span><strong>{site.nome}</strong><small>{site.slogan}</small></span></div>
+            <div className="logo"><img className="logo-marca" src="/logo.png" alt={site.nome} width={1774} height={887} /></div>
             <p>Imóveis visitados e documentados pela nossa equipe, com atendimento direto do primeiro contato à assinatura do contrato.</p>
             <div className="rodape-redes">
               {site.instagram && <a href={site.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><AtSign size={17} /></a>}
